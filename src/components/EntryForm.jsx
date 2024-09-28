@@ -15,7 +15,7 @@
 */
 
 import { useState } from "react";
-import { useJournalEntriesData, useJournalEntriesSetter } from "../contexts/EntriesContexts";
+import { useJournalEntriesData, useJournalEntriesSetter } from "../contexts/EntriesContext";
 
 
 export default function EntryForm({entryId}){
@@ -29,9 +29,27 @@ export default function EntryForm({entryId}){
 	let [localAuthor, setLocalAuthor] = useState("Super Cool Author - that's you!");
 	let [localLastEdited, setLocalLastEdited] = useState(Date.now());
 
+	useEffect(() => {
+		if (localId){
+			let specificPost = journalEntriesData.find((entry) => entry.id == localId);
+			setLocalAuthor(specificPost.author);
+			setLocalContent(specificPost.content);
+			setLocalName(specificPost.name);
+			setLocalType(specificPost.type);
+		}
+    }, [localId]);
+
 
 	const handleSubmission = () => {
 		setJournalEntries(currentJournalEntries => {
+
+			if (localId){
+				// if Id exists, we are EDITING
+				let tempEntriesCopy = [...currentJournalEntries];
+				
+
+			}
+
 			let newEntry = {
 				lastEdited: Date.now(),
 				author: localAuthor,
