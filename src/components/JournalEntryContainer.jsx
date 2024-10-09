@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useJournalEntriesData } from "../contexts/EntriesContext";
-import EntryForm from "./EntryForm"
+import EntryForm from "./EntryForm";
 import ViewEntry from "./ViewEntry";
+
 
 export default function JournalEntryContainer({entryId}){
 
